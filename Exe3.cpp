@@ -80,8 +80,8 @@ bool ConcatRemove(string s, string t, int k)
     }       
     
     //Print the result and the operations needed
-    cout << temp << endl;
-    cout << ope << endl;
+    //cout << temp << endl;
+    //cout << ope << endl;
        
     //return true if it's possible
     if ((t == temp) and (ope <= k))
@@ -187,9 +187,9 @@ int main()
 
     //Return of the function which determines if it's possible to transform the strings in a certain operations number
     if (ConcatRemove(s,t,k))
-        cout << "Yes" << endl;
+        cout << "Yes, it is POSSIBLE to convert the inicial string into the desired string in " << k << " operations"<< endl;
     else
-        cout << "No" << endl;
+        cout << "No, it is NOT POSSIBLE to convert the inicial string into the desired string in " << k << " operations"<< endl;
 
 
     return 0;
