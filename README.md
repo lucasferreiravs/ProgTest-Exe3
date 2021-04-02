@@ -29,4 +29,4 @@ Test: Running the code in a C++ compiler, it will request the user to type the s
 
 After that it will show in the output screen whether it's possible or not to convert the strings in a given number of operations.
 
-Note: In the input step, the program will keep asking to input information if it's not meeting the constraints, such as Uppercase letters, out of range (0..100) or invalid numeric digits (k input).
+Note: There are extra validation of the input data, out of the function ConcatRemove(s, t, k). The program will keep asking to input valid information if it's out of the constraints, such as Uppercase letters, out of range (0..100) or invalid numeric digits (k input).
