@@ -33,63 +33,6 @@ string Remove(string s)
     return s;
 }
 
-//Function to determine if it's possible to match two strings in a certain number os steps
-bool ConcatRemove(string s, string t, int k)
-{
-    //operations counter
-    int ope = 0;
-
-    //strings to char arrays to compare each character
-    char s_char[s.length() + 1];
-    char t_char[t.length() + 1];
-
-    //Passing the strings to char arrays
-    strcpy(s_char, s.c_str());
-    strcpy(t_char, t.c_str()); 
-    
-    //Temporary string
-    string temp = s;
-       
-    //Remove iterations
-    for (int i = 0; i <= s.length()-1; i++)
-    {
-        //If a character is different, the program starts removing all the characters after it
-        if (s_char[i] != t_char[i])
-        {
-             for (int r = s.length()-1; r >= i; r--)
-             {
-                temp = Remove(temp);
-                ope++;
-             } 
-             
-             break;
-        }
-        
-    }
-
-    //Concatenate iterations
-    for (int i = 0; i <= t.length()-1; i++)
-    {
-        //If a character is different, it will append to the temp string
-        if (t_char[i] != s_char[i])
-        {
-            temp = Concat(temp, t_char[i]);
-            ope++;
-        }
-        
-    }       
-    
-    //Print the result and the operations needed
-    //cout << temp << endl;
-    //cout << ope << endl;
-       
-    //return true if it's possible
-    if ((t == temp) and (ope <= k))
-        return true;
-    else
-        return false;
-}
-
 //Checking if a string is a lowercase and valid ascii[a..z] letter
 bool CheckLower(string s)
 {
@@ -145,6 +88,85 @@ bool CheckDigit(string s)
     }
     
     return true;
+}
+
+//Function to determine if it's possible to match two strings in a certain number os steps
+bool ConcatRemove(string s, string t, int k)
+{
+    //validations
+    //Checks if the inicial string is lowercase(also a valid letter) and if it's lower than 100 characters 
+    if (!CheckLower(s) or (s.length()>100) or (s==""))
+    {
+        cout << "Invalid inicial string!" << endl;
+        return false;
+    }
+
+    //Checks if the desired string is lowercase(also a valid letter) and if it's lower than 100 characters 
+    if (!CheckLower(t) or (t.length()>100) or (t==""))
+    {
+        cout << "Invalid desired string!" << endl;
+        return false;
+    }
+
+    //Checks if the operations number is between 1 and 100.
+    if ((k < 1) or (k > 100))
+    {
+        cout << "Invalid number of operations!" << endl;
+        return false;
+    }
+    
+    //operations counter
+    int ope = 0;
+
+    //strings to char arrays to compare each character
+    char s_char[s.length() + 1];
+    char t_char[t.length() + 1];
+
+    //Passing the strings to char arrays
+    strcpy(s_char, s.c_str());
+    strcpy(t_char, t.c_str()); 
+    
+    //Temporary string
+    string temp = s;
+       
+    //Remove iterations
+    for (int i = 0; i <= s.length()-1; i++)
+    {
+        //If a character is different, the program starts removing all the characters after it
+        if (s_char[i] != t_char[i])
+        {
+             for (int r = s.length()-1; r >= i; r--)
+             {
+                temp = Remove(temp);
+                ope++;
+             } 
+             
+             break;
+        }
+        
+    }
+
+    //Concatenate iterations
+    for (int i = 0; i <= t.length()-1; i++)
+    {
+        //If a character is different, it will append to the temp string
+        if (t_char[i] != s_char[i])
+        {
+            temp = Concat(temp, t_char[i]);
+            ope++;
+        }
+        
+    }       
+    
+    //Print the result and the operations needed
+    //cout << temp << endl;
+    //cout << ope << endl;
+       
+    //return true if it's possible
+    if ((t == temp) and (ope <= k))
+        return true;
+    else
+        return false;
 }
 
 //Main class that requires input from the user and validates the entry information
